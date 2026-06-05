@@ -585,19 +585,6 @@ nav{
     color:var(--gray-600)
 }
 
-@media(max-width:900px){
-    .proj-showcase{
-        grid-template-columns:1fr;
-        gap:32px;
-        padding:48px 0
-    }
-    .proj-collage,.collage-grid-2{
-        aspect-ratio:3/2
-    }
-}
-
-
-
 /* Gambar — bebas taruh di kiri */
 .img-a {
     position: absolute;
@@ -1086,58 +1073,252 @@ footer{
     transform:translateY(20px)
 }
 
+
+
+/* ============================================
+RESPONSIVE — MOBILE (max 768px)
+============================================ */
+
 @media(max-width:900px){
-    nav{
-        padding:20px 24px
+
+    /* CURSOR — sembunyikan di touch */
+    .cur,.cur-ring{ display:none }
+    body{ cursor:auto }
+
+    /* NAV */
+    nav{ padding:16px 24px }
+    .nav-links,.nav-cta{ display:none }
+    .nav-logo{ 
+        font-size:13px;
+        letter-spacing:2px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
     }
-    .nav-links,.nav-cta{
-        display:none
-    }
+
+    /* HERO — stack jadi 1 kolom */
     #hero{
         grid-template-columns:1fr;
-        min-height:auto
+        min-height:100vh;
+        padding-top:20px;
+        position:relative
     }
     .hero-left{
-        padding:80px 24px 48px
+        padding:48px 24px 320px;  /* beri ruang bawah buat foto */
+        justify-content:flex-start
     }
-    .hero-right{
-        height:60vw;
-        min-height:300px
+    .hero-label{ margin-bottom:20px }
+    .hero-title{
+        font-size:clamp(48px,13vw,72px);
+        margin-bottom:24px
     }
-    #about,#skills,#projects,#content,#process,#contact{
-        padding:80px 24px
+    .hero-desc{
+        font-size:14px;
+        max-width:100%;
+        margin-bottom:24px
     }
+    .hero-btns{
+        flex-wrap:wrap;
+        gap:10px
+    }
+    .hero-year{
+        margin-left:0;
+        align-self:auto
+    }
+    .btn-dark,.btn-ghost{
+        padding:12px 24px;
+        font-size:10px
+    }
+
+    /* FOTO HERO — tampil di bawah teks */
+    .hero-photo-box{
+        width:55%;
+        height:45%;
+        top:auto;
+        bottom:20px;
+        left:38%
+    }
+    .hero-photo{
+        width:70%;
+        left:20%;
+        top:auto;
+        bottom:0;
+        max-height:320px;
+        object-position:center top
+    }
+    .hero-right-label{
+        position:absolute;
+        bottom:16px;
+        left:24px;
+        font-size:11px;
+        letter-spacing:0.5px
+    }
+    .hero-scroll-indicator{
+        bottom:24px;
+        right:24px
+    }
+
+    /* ABOUT */
     #about{
-        grid-template-columns:1fr
-    }
-    .skills-grid{
-        grid-template-columns:1fr 1fr
-    }
-    .proj-item{
-        grid-template-columns:40px 1fr;
-        gap:16px
-    }
-    .proj-type,.proj-tags-row{
-        display:none
-    }
-    .proj-arrow{
-        display:none
-    }
-    .content-grid{
-        grid-template-columns:1fr
-    }
-    .process-item{
-        grid-template-columns:48px 1fr;
+        padding:80px 24px;
         gap:24px
     }
-    .process-desc{
-        display:none
+    .about-text{
+        font-size:14px;
+        max-width:100%
     }
+    .about-tags{ margin-top:24px }
+
+    /* SKILLS */
+    #skills{ padding:80px 24px }
+    .skills-grid{ grid-template-columns:1fr 1fr }
+    .skill-cat{ padding:20px 20px }
+    .skill-cat-name{ font-size:18px; margin-bottom:16px }
+
+    /* PROJECTS */
+    #projects{ padding:80px 24px }
+    .proj-header{ margin-bottom:32px }
+
+    /* proj-showcase: teks di atas, gambar di bawah */
+    .proj-showcase{
+        position:static;           /* matikan absolute positioning parent */
+        display:flex;
+        flex-direction:column;
+        gap:0;
+        padding:48px 0;
+        min-height:auto;
+        border-top:1px solid var(--gray-100)
+    }
+    .proj-showcase:last-child{
+        border-bottom:1px solid var(--gray-100)
+    }
+
+    /* INFO teks — kembali ke flow normal */
+    .proj-info{
+        position:static;
+        width:100%;
+        left:auto;
+        top:auto;
+        margin-bottom:32px
+    }
+    .proj-info .proj-name{ font-size:28px }
+
+    /* Semua gambar project — susun vertikal, full width */
+    .proj-showcase img{
+        position:static !important;
+        width:100% !important;
+        height:200px !important;
+        object-fit:cover;
+        margin-bottom:6px;
+        top:auto !important;
+        left:auto !important
+    }
+
+    /* CONTENT CREATOR */
+    #content{ padding:80px 24px }
+    .content-grid{ grid-template-columns:1fr; gap:2px }
+    .platform{ padding:36px 24px }
+    .platform-name{ font-size:28px }
+
+    /* PROCESS */
+    #process{ padding:80px 24px }
+    .process-intro{ margin-bottom:48px }
+    .process-item{
+        grid-template-columns:48px 1fr;
+        gap:20px;
+        padding:32px 0
+    }
+    .process-desc{ display:none }
+    .process-no{ font-size:36px }
+
+    /* CONTACT */
+    #contact{ padding:80px 24px }
+    .contact-tagline{ font-size:clamp(36px,10vw,56px) }
+    .contact-sub{ margin-bottom:40px }
+    .contact-val{ font-size:16px }
+    .contact-row{ padding:20px 0 }
+
+    /* FOOTER */
     footer{
         flex-direction:column;
         gap:8px;
         text-align:center;
-        padding:20px
+        padding:20px 24px
+    }
+}
+
+/* ============================================
+   RESPONSIVE — SMALL PHONE (max 480px)
+   ============================================ */
+
+@media(max-width:480px){
+
+    .hero-title{ font-size:clamp(40px,12vw,56px) }
+    .hero-left{ padding:40px 20px 280px }
+
+    .hero-photo{
+        width:80%;
+        left:10%;
+        top: 50%;
+        max-height:320px;
+    }
+    .hero-photo-box{
+        width:45%;
+        height:22%;
+        left:25%;
+        bottom:65.9px
     }
 
+    #about,#skills,#projects,#content,#process,#contact{
+        padding:64px 20px
+    }
+
+    .skills-grid{ grid-template-columns:1fr }
+
+    .sec-title{ font-size:clamp(36px,9vw,52px) }
+
+    .proj-info .proj-name{ font-size:24px }
+
+    .contact-tagline{ font-size:clamp(32px,9vw,44px) }
+    .contact-val{ font-size:14px }
+    .contact-icon{ width:36px; height:36px; font-size:14px }
+}
+
+/* ============================================
+TAMBAHAN RESPONSIVE UNTUK GAMBAR PROYEK & KERAPIHAN
+============================================ */
+@media (max-width: 768px) {
+    /* Atur ulang semua gambar di dalam proj-showcase agar lebih kecil & rapi */
+    .proj-showcase {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .proj-showcase img {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: 180px;
+        object-fit: cover;
+        margin-bottom: 8px;
+        border-radius: 6px;
+        top: auto !important;
+        left: auto !important;
+    }
+
+    /* Beri jarak antar gambar dalam satu proyek */
+    .proj-showcase {
+        gap: 8px;
+    }
+
+    /* Optional: atur layout grid untuk beberapa gambar yang ingin tetap rapi */
+    .proj-showcase img:nth-child(1),
+    .proj-showcase img:nth-child(2),
+    .proj-showcase img:nth-child(3),
+    .proj-showcase img:nth-child(4),
+    .proj-showcase img:nth-child(5) {
+        margin-bottom: 8px;
+    }
 }
